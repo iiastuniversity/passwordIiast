@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Password Vault — আপনার ব্যক্তিগত তথ্যভান্ডার</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ===== Auth Screen (Register / Login) ===== -->
+  <div id="auth-screen" class="screen">
+    <div class="auth-card">
+      <div class="logo">🔐</div>
+      <h1>Password Vault</h1>
+      <p class="subtitle">আপনার সব ওয়েবসাইটের তথ্য এক জায়গায়</p>
+
+      <!-- Register Form (শুধু প্রথমবার) -->
+      <form id="register-form" class="hidden">
+        <h2>Admin তৈরি করুন</h2>
+        <p class="hint">এটি একবারই করা যাবে — প্রথম ও শেষবার</p>
+        <input type="text" id="reg-username" placeholder="ইউজারনেম" required />
+        <input type="password" id="reg-password" placeholder="মাস্টার পাসওয়ার্ড" required minlength="4" />
+        <input type="password" id="reg-password2" placeholder="পাসওয়ার্ড আবার দিন" required />
+        <input type="text" id="reg-token" placeholder="GitHub Personal Access Token (gist সহ)" required />
+        <button type="submit" class="btn btn-primary">Admin রেজিস্টার করুন</button>
+        <p class="error" id="reg-error"></p>
+      </form>
+
+      <!-- Login Form -->
+      <form id="login-form" class="hidden">
+        <h2>লগইন করুন</h2>
+        <input type="text" id="login-username" placeholder="ইউজারনেম" required />
+        <input type="text" id="login-gist" class="hidden" placeholder="Gist ID (প্রথমবার এই device-এ)" />
+        <input type="password" id="login-token" class="hidden" placeholder="GitHub Token (প্রথমবার এই device-এ)" />
+        <input type="password" id="login-password" placeholder="মাস্টার পাসওয়ার্ড" required />
+        <button type="submit" class="btn btn-primary">লগইন</button>
+        <p class="error" id="login-error"></p>
+      </form>
+    </div>
+  </div>
+
+  <!-- ===== Dashboard Screen ===== -->
+  <div id="dashboard-screen" class="screen hidden">
+    <header class="topbar">
+      <div class="topbar-left">
+        <span class="logo-small">🔐</span>
+        <span class="app-name">Password Vault</span>
+      </div>
+      <div class="topbar-right">
+        <span id="sync-status" class="sync-status">☁️</span>
+        <span id="admin-name" class="admin-name"></span>
+        <button id="logout-btn" class="btn btn-danger btn-sm">লগআউট</button>
+      </div>
+    </header>
+
+    <main class="container">
+      <!-- Add / Edit Entry -->
+      <section class="card form-card">
+        <h2 id="form-title">নতুন এন্ট্রি যোগ করুন</h2>
+        <form id="entry-form">
+          <input type="hidden" id="entry-id" />
+          <div class="form-grid">
+            <input type="text" id="entry-website" placeholder="ওয়েবসাইটের নাম (যেমন: Facebook)" required />
+            <input type="url" id="entry-url" placeholder="ওয়েবসাইটের URL (ঐচ্ছিক)" />
+            <input type="text" id="entry-username" placeholder="ইউজারনেম" />
+            <input type="email" id="entry-email" placeholder="ইমেইল" />
+            <div class="password-wrap">
+              <input type="password" id="entry-password" placeholder="পাসওয়ার্ড" required />
+              <button type="button" class="eye-btn" data-target="entry-password">👁</button>
+            </div>
+            <button type="button" id="gen-password" class="btn btn-secondary">শক্তিশালী পাসওয়ার্ড বানান</button>
+          </div>
+          <input type="text" id="entry-note" placeholder="নোট (ঐচ্ছিক)" />
+          <div class="form-actions">
+            <button type="submit" class="btn btn-primary" id="save-btn">সংরক্ষণ করুন</button>
+            <button type="button" class="btn btn-secondary hidden" id="cancel-edit">বাতিল</button>
+          </div>
+        </form>
+      </section>
+
+      <!-- Search -->
+      <section class="search-bar">
+        <input type="search" id="search-input" placeholder="🔍 খুঁজুন... (ওয়েবসাইট, ইউজারনেম, ইমেইল)" />
+        <span id="entry-count" class="count-badge"></span>
+      </section>
+
+      <!-- Entries List -->
+      <section id="entries-list" class="entries-grid"></section>
+
+      <p id="empty-state" class="empty-state hidden">
+        এখনও কোনো এন্ট্রি নেই। উপরের ফর্ম দিয়ে প্রথম এন্ট্রি যোগ করুন!
+      </p>
+    </main>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
