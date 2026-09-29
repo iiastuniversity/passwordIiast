@@ -49,6 +49,8 @@ body {
 }
 
 .logo { font-size: 56px; margin-bottom: 10px; }
+.logo-img { width: 90px; height: 90px; object-fit: contain; }
+.logo-img-sm { width: 30px; height: 30px; object-fit: contain; vertical-align: middle; }
 .auth-card h1 { font-size: 26px; margin-bottom: 5px; }
 .subtitle { color: var(--text-dim); font-size: 14px; margin-bottom: 28px; }
 .auth-card h2 { font-size: 18px; margin-bottom: 6px; }
