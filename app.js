@@ -139,7 +139,23 @@ function showDashboard() {
   const admin = JSON.parse(localStorage.getItem(LS_ADMIN));
   $('admin-name').textContent = '👤 ' + admin.username;
   renderEntries();
+  // Browser auto-fill দিয়ে এন্ট্রি ফর্মে লগইন তথ্য বসে গেলে মুছে ফেলা
+  setTimeout(() => {
+    if (!editingId) {
+      ['entry-username', 'entry-email', 'entry-password'].forEach((id) => {
+        const f = $(id);
+        if (f && !f.dataset.touched) f.value = '';
+      });
+    }
+  }, 300);
 }
+
+// ইউজার নিজে কিছু টাইপ করলে আর মুছবে না
+['entry-username', 'entry-email', 'entry-password'].forEach((id) => {
+  document.addEventListener('input', (e) => {
+    if (e.target.id === id) e.target.dataset.touched = '1';
+  });
+});
 
 // ---------- Register (একবারই — প্রথম device-এ) ----------
 $('register-form').addEventListener('submit', async (e) => {

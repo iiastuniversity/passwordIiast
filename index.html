@@ -60,20 +60,20 @@
       <!-- Add / Edit Entry -->
       <section class="card form-card">
         <h2 id="form-title">নতুন এন্ট্রি যোগ করুন</h2>
-        <form id="entry-form">
+        <form id="entry-form" autocomplete="off">
           <input type="hidden" id="entry-id" />
           <div class="form-grid">
-            <input type="text" id="entry-website" placeholder="ওয়েবসাইটের নাম (যেমন: Facebook)" required />
-            <input type="url" id="entry-url" placeholder="ওয়েবসাইটের URL (ঐচ্ছিক)" />
-            <input type="text" id="entry-username" placeholder="ইউজারনেম" />
-            <input type="email" id="entry-email" placeholder="ইমেইল" />
+            <input type="text" id="entry-website" placeholder="ওয়েবসাইটের নাম (যেমন: Facebook)" required autocomplete="off" />
+            <input type="url" id="entry-url" placeholder="ওয়েবসাইটের URL (ঐচ্ছিক)" autocomplete="off" />
+            <input type="text" id="entry-username" placeholder="ইউজারনেম" autocomplete="off" />
+            <input type="email" id="entry-email" placeholder="ইমেইল" autocomplete="off" />
             <div class="password-wrap">
-              <input type="password" id="entry-password" placeholder="পাসওয়ার্ড" required />
+              <input type="password" id="entry-password" placeholder="পাসওয়ার্ড" required autocomplete="new-password" />
               <button type="button" class="eye-btn" data-target="entry-password">👁</button>
             </div>
             <button type="button" id="gen-password" class="btn btn-secondary">শক্তিশালী পাসওয়ার্ড বানান</button>
           </div>
-          <input type="text" id="entry-note" placeholder="নোট (ঐচ্ছিক)" />
+          <input type="text" id="entry-note" placeholder="নোট (ঐচ্ছিক)" autocomplete="off" />
           <div class="form-actions">
             <button type="submit" class="btn btn-primary" id="save-btn">সংরক্ষণ করুন</button>
             <button type="button" class="btn btn-secondary hidden" id="cancel-edit">বাতিল</button>
